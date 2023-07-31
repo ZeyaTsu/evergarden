@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+:root {
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+#logo {
+    min-width: 3vh;
+    max-width: 6vh;
+}
+
+header {
+    background-color: #25252b;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+}
+
+.logo-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+body {
+    background-color: #2c2c32;
+}
+
+#example {
+    min-width: 43vh;
+    max-width: 50vw;
+}
+#other {
+    margin-top: 5vh;
+    font-size: 14px;
+    color: gray;
+}
+#release {
+    color: white;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+#release:hover {
+    opacity: 1;
+}
+
+.frame {
+    text-align: center;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 12vh;
+    margin-bottom: 15vh;
+}
+
+.slogan {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    margin-top: 5vh;
+    padding: 1vh 7vh 1vh 7vh;
+    background-color: rgb(0, 119, 255);
+    font-weight: lighter;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background-color: rgb(66, 126, 255);
+}
+
+.info {
+    padding: 5vh 10vh 5vh 10vh;
+}
+
+footer {
+    opacity: 0.2;
+    text-align: center;
+}
