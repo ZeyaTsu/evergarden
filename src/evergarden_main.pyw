@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
+from tkinter import ttk, messagebox, filedialog, Menu
 from threading import Thread
 from bing_image_downloader import downloader
-from PIL import Image
+from PIL import Image, ImageTk
 import sys, requests, datetime, os
+from configparser import ConfigParser
 
 """
 ███████ ██    ██ ███████ ██████   ██████   █████  ██████  ██████  ███████ ███    ██ 
@@ -18,6 +19,12 @@ import sys, requests, datetime, os
   ███   █████     ████   ███████    ██    ███████ ██    ██                          
  ███    ██         ██    ██   ██    ██         ██ ██    ██                          
 ███████ ███████    ██    ██   ██    ██    ███████  ██████    
+"""
+
+"""
+
+MAIN CODE
+
 """
 
 def logs(log_to_write:str):
@@ -40,8 +47,10 @@ def resource_path(relative_path):
 
 icon = resource_path("violet.ico")
 search_term = ""
+set_loaded = False
+profile_selected = None
 
-def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest):
+def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor):
     global search_term
     search_term = f"{anime_name} {character_name} {image_type} anime"
     if gif_only:
@@ -53,24 +62,72 @@ def download_images(anime_name, character_name, image_type, num_images_to_downlo
     if options_pinterest:
         search_term += " pinterest"
         logs('Applying Pinterest source')
+    if options_tenor:
+        search_term += " tenor"
+        logs('Applying Tenor source')
+    if image_type.lower() == "all":
+        image_type = ""
     logs('Starting download')
     downloader.download(search_term, limit=num_images_to_download, output_dir=save_folder,
                         adult_filter_off=True, force_replace=False, timeout=60)
 
 def on_download_clicked():
-    anime_name = entry_anime_name.get().strip()
-    character_name = entry_character_name.get().strip()
-    image_type = image_type_var.get().lower()  # Get the selected image type from the dropdown menu
-    num_images_to_download = int(entry_num_images.get().strip())
+    global set_loaded, profile
     save_folder = entry_save_folder.get().strip()  # Get the selected save folder
-    gif_only = gif_only_var.get() == 1  # Check if the "Gif only" checkbox is checked
-    options_black_white = filter_black_white.get() == 1
-    options_pinterest = pinterest.get() == 1
 
-    if not anime_name or not character_name or not image_type:
-        messagebox.showerror("Invalid Input", "Please fill in all the required fields")
-        logs('Error : Invalid Input')
-        return
+    if profile_selected != None:
+        c = ConfigParser()
+        c.read('evergarden_set.ini')
+        profiles = c.sections()
+        for profile in profiles:
+            logs(f'Getting [{profile}] preset')
+        
+        preset = c[profile_selected]
+        anime_name = preset["anime_name"]
+        character_name = preset["character_name"]
+        image_type = preset["type"]
+        if image_type == "pfp" or image_type == "profile picture":
+            image_type == "profile picture"
+        elif image_type.lower() == "wallpaper":
+            image_type = "wallpaper"
+        else:
+            image_type = "all"
+        num_images_to_download = int(preset["n_images"])
+        gif_only = preset["gif"]
+        if gif_only == "True":
+            gif_only = True
+        else:
+            gif_only = False
+        options_black_white = preset['filter']
+        if options_black_white != "None":
+            options_black_white = True
+        else:
+            options_black_white = False
+        options_pinterest = preset["pinterest"]
+        if options_pinterest == "True":
+            options_pinterest = True
+        else:
+            options_pinterest = False 
+        options_tenor = preset["tenor"]
+        if options_tenor == "True":
+            options_tenor = True
+        else:
+            options_tenor = False
+        
+    else:
+        anime_name = entry_anime_name.get().strip()
+        character_name = entry_character_name.get().strip()
+        image_type = image_type_var.get().lower()  # Get the selected image type from the dropdown menu
+        num_images_to_download = int(entry_num_images.get().strip())
+        gif_only = gif_only_var.get() == 1  # Check if the "Gif only" checkbox is checked
+        options_black_white = filter_black_white.get() == 1
+        options_pinterest = pinterest.get() == 1
+        options_tenor = tenor.get() == 1
+
+        if not anime_name or not character_name or not image_type:
+            messagebox.showerror("Invalid Input", "Please fill in all the required fields")
+            logs('Error : Invalid Input')
+            return
 
     if not save_folder:
         messagebox.showerror("Invalid Save Folder", "Please select a folder to save the images")
@@ -80,10 +137,10 @@ def on_download_clicked():
     # Disable the DL button while downloading
     button_download.config(state=tk.DISABLED)
 
-    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest))
+    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor))
     download_thread.start()
 
-    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest))
+    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest,options_tenor))
     progress_thread.start()
 
 def apply_black_and_white_filter(dir_folder):
@@ -130,7 +187,7 @@ def rename_folder(dir_folder, new_name):
             print(e)
             logs("Can't rename folder, already existing")
 
-def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest):
+def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest, options_tenor):
     while download_thread.is_alive():
         percentage_label.config(text=f"Downloading...")
     percentage_label.config(text="Download Completed")
@@ -150,7 +207,14 @@ def update_progress(download_thread, num_images_to_download, save_folder, option
             image_type += 'g'
     betterName = f"[{image_type}] {anime_name} - {character_name}"
     if options_pinterest:
-        betterName += f" (Pinterest)"
+        if options_tenor:
+            betterName += " (Pin&Ten)"
+        else:
+            betterName += " (Pinterest)"
+
+    if options_tenor == True and options_pinterest == False:
+        betterName += " (Tenor)"
+
     if options_black_white:
         betterName += f' [bw]'
     rename_folder(save_folder, betterName)
@@ -166,7 +230,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.4.8 Stable"
+__version__ = "1.6.4 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -218,10 +282,17 @@ version_value = isUpdated()
 author_value = isAuthor()
 
 if version_value == False:
-    __nameApp__ = "Evergarden (Not Updated)"
+    __nameApp__ = "Evergarden (Not updated)"
 
 if author_value == False:
     __nameApp__ = "Evergarden - NOT ORIGINAL PRODUCT"
+
+
+"""
+
+MAIN GUI
+
+"""
 
 root.title(__nameApp__)
 root.configure(background="#0d1b2a")
@@ -283,6 +354,15 @@ button_download.grid(row=6, column=0, columnspan=3, padx=5, pady=10)
 percentage_label = tk.Label(main_tab, text="", fg="white", bg="#0d1b2a")
 percentage_label.grid(row=5, column=0, columnspan=3, padx=5, pady=10)
 
+try:
+    c = ConfigParser()
+    c.read('evergarden_set.ini')
+    c = c["evergarden"]
+    set_loaded = True
+    logs(f'Set loaded : {set_loaded}')
+except:
+    pass
+
 # Options Tab (WIP, coming soon)
 options_tab = ttk.Frame(notebook, style='Second.TFrame')
 notebook.add(options_tab, text="Options")
@@ -295,6 +375,9 @@ pinterest = tk.IntVar()
 checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_pinterest.grid(row=1, column=2, padx=5, pady=5)
 
+tenor = tk.IntVar()
+checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_tenor.grid(row=1, column=3, padx=5, pady=5)
 
 
 # About Tab
@@ -303,7 +386,62 @@ notebook.add(second_tab, text='About')
 
 # Text about tab
 text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg="#0d1b2a")
-text_in_second_tab.pack(padx=100, pady=100)
+text_in_second_tab.grid(row=1, column=2, padx=150, pady=40)
+
+img = ImageTk.PhotoImage(Image.open(resource_path("me.jpg")))
+labeli = tk.Label(second_tab, image=img, bg="#778da9")
+labeli.grid(row=2, column=2, padx=150, pady=5)
+
+# Select Preset
+
+menu = Menu(root)
+root.config(menu=menu)
+select_set = Menu(menu, tearoff=0)
+menu.add_cascade(label="Presets", menu=select_set)
+
+def LoadPreset(profile):
+    global profile_selected
+    if profile == 'None':
+        profile_selected = None
+        label_preset.config(text="")
+    else:
+        profile_selected = profile
+        label_preset.config(text=f"{profile}")
+
+def makePresetFile():
+    c.add_section('Preset name')
+    c.set('Preset name', 'anime_name','Anime name')
+    c.set('Preset name', 'character_name','Character name')
+    c.set('Preset name', 'type','profile picture/wallpaper/all')
+    c.set('Preset name', 'n_images','number of images')
+    c.set('Preset name', 'gif','True/False')
+    c.set('Preset name', 'filter','None/bw')
+    c.set('Preset name', 'pinterest','True/False')
+    c.set('Preset name', 'INFO', 'PRESET NAME MUST BE UNDER 10 CHARACTERS. (you can delete this line)')
+    with open('evergarden_set.ini', 'w') as f:
+        c.write(f)
+    logs('Made evergarden_set.ini')
+    messagebox.showinfo("Evergarden Help", "Note that if you want to add another preset, just copy & paste the existing preset and edit it. By clicking 'OK' Evergarden will close to load presets.")
+    root.destroy()
+
+
+if os.path.exists('evergarden_set.ini'):
+    select_set.add_command(label="None", command=lambda p='None': LoadPreset(p))
+    c = ConfigParser()
+    c.read('evergarden_set.ini')
+    profiles = c.sections()
+    for profile in profiles:
+        if len(str(profile)) <= 10:
+            logs(f'Got [{profile}]')
+            select_set.add_command(label=profile, command=lambda p=profile: LoadPreset(p))
+        else:
+            logs(f"Couldn't get {profile} as length > 10 characters")
+else:
+    select_set.add_command(label="Make preset file", command=makePresetFile)
+
+label_preset = tk.Label(main_tab, text="", fg="white", bg="#0d1b2a")
+label_preset.grid(row=6, column=1, columnspan=3,padx=5, pady=10)
+
 
 style = ttk.Style()
 style.configure('Main.TFrame', background="#0d1b2a")

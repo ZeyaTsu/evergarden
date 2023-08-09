@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, Menu
 from threading import Thread
 from bing_image_downloader import downloader
-from PIL import Image
+from PIL import Image, ImageTk
 import sys, requests, datetime, os
 from configparser import ConfigParser
 
@@ -19,6 +19,12 @@ from configparser import ConfigParser
   ███   █████     ████   ███████    ██    ███████ ██    ██                          
  ███    ██         ██    ██   ██    ██         ██ ██    ██                          
 ███████ ███████    ██    ██   ██    ██    ███████  ██████    
+"""
+
+"""
+
+MAIN CODE
+
 """
 
 def logs(log_to_write:str):
@@ -44,7 +50,7 @@ search_term = ""
 set_loaded = False
 profile_selected = None
 
-def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest):
+def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor):
     global search_term
     search_term = f"{anime_name} {character_name} {image_type} anime"
     if gif_only:
@@ -56,6 +62,9 @@ def download_images(anime_name, character_name, image_type, num_images_to_downlo
     if options_pinterest:
         search_term += " pinterest"
         logs('Applying Pinterest source')
+    if options_tenor:
+        search_term += " tenor"
+        logs('Applying Tenor source')
     if image_type.lower() == "all":
         image_type = ""
     logs('Starting download')
@@ -99,6 +108,11 @@ def on_download_clicked():
             options_pinterest = True
         else:
             options_pinterest = False 
+        options_tenor = preset["tenor"]
+        if options_tenor == "True":
+            options_tenor = True
+        else:
+            options_tenor = False
         
     else:
         anime_name = entry_anime_name.get().strip()
@@ -108,6 +122,7 @@ def on_download_clicked():
         gif_only = gif_only_var.get() == 1  # Check if the "Gif only" checkbox is checked
         options_black_white = filter_black_white.get() == 1
         options_pinterest = pinterest.get() == 1
+        options_tenor = tenor.get() == 1
 
         if not anime_name or not character_name or not image_type:
             messagebox.showerror("Invalid Input", "Please fill in all the required fields")
@@ -122,10 +137,10 @@ def on_download_clicked():
     # Disable the DL button while downloading
     button_download.config(state=tk.DISABLED)
 
-    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest))
+    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor))
     download_thread.start()
 
-    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest))
+    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest,options_tenor))
     progress_thread.start()
 
 def apply_black_and_white_filter(dir_folder):
@@ -172,7 +187,7 @@ def rename_folder(dir_folder, new_name):
             print(e)
             logs("Can't rename folder, already existing")
 
-def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest):
+def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest, options_tenor):
     while download_thread.is_alive():
         percentage_label.config(text=f"Downloading...")
     percentage_label.config(text="Download Completed")
@@ -192,7 +207,14 @@ def update_progress(download_thread, num_images_to_download, save_folder, option
             image_type += 'g'
     betterName = f"[{image_type}] {anime_name} - {character_name}"
     if options_pinterest:
-        betterName += f" (Pinterest)"
+        if options_tenor:
+            betterName += " (Pin&Ten)"
+        else:
+            betterName += " (Pinterest)"
+
+    if options_tenor == True and options_pinterest == False:
+        betterName += " (Tenor)"
+
     if options_black_white:
         betterName += f' [bw]'
     rename_folder(save_folder, betterName)
@@ -208,7 +230,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.6.2 Pre-release"
+__version__ = "1.6.4 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -260,10 +282,17 @@ version_value = isUpdated()
 author_value = isAuthor()
 
 if version_value == False:
-    __nameApp__ = "Evergarden (Pre-Release)"
+    __nameApp__ = "Evergarden (Not updated)"
 
 if author_value == False:
     __nameApp__ = "Evergarden - NOT ORIGINAL PRODUCT"
+
+
+"""
+
+MAIN GUI
+
+"""
 
 root.title(__nameApp__)
 root.configure(background="#0d1b2a")
@@ -346,6 +375,9 @@ pinterest = tk.IntVar()
 checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_pinterest.grid(row=1, column=2, padx=5, pady=5)
 
+tenor = tk.IntVar()
+checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_tenor.grid(row=1, column=3, padx=5, pady=5)
 
 
 # About Tab
@@ -354,8 +386,11 @@ notebook.add(second_tab, text='About')
 
 # Text about tab
 text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg="#0d1b2a")
-text_in_second_tab.pack(padx=100, pady=100)
+text_in_second_tab.grid(row=1, column=2, padx=150, pady=40)
 
+img = ImageTk.PhotoImage(Image.open(resource_path("me.jpg")))
+labeli = tk.Label(second_tab, image=img, bg="#778da9")
+labeli.grid(row=2, column=2, padx=150, pady=5)
 
 # Select Preset
 
