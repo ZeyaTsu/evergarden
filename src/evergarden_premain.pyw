@@ -386,11 +386,7 @@ notebook.add(second_tab, text='About')
 
 # Text about tab
 text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg="#0d1b2a")
-text_in_second_tab.grid(row=1, column=2, padx=150, pady=40)
-
-img = ImageTk.PhotoImage(Image.open(resource_path("me.jpg")))
-labeli = tk.Label(second_tab, image=img, bg="#778da9")
-labeli.grid(row=2, column=2, padx=150, pady=5)
+text_in_second_tab.grid(row=1, column=2, padx=150, pady=100)
 
 # Select Preset
 
