@@ -413,6 +413,7 @@ def makePresetFile():
     c.set('Preset name', 'gif','True/False')
     c.set('Preset name', 'filter','None/bw')
     c.set('Preset name', 'pinterest','True/False')
+    c.set('Preset name', 'tenor', 'True/False')
     c.set('Preset name', 'INFO', 'PRESET NAME MUST BE UNDER 10 CHARACTERS. (you can delete this line)')
     with open('evergarden_set.ini', 'w') as f:
         c.write(f)
