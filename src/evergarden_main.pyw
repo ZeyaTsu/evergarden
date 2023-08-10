@@ -230,7 +230,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.6.4 Stable"
+__version__ = "1.6.5 Stable"
 __author__ = "ZeyaTsu"
 
 
