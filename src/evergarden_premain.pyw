@@ -5,6 +5,19 @@ from bing_image_downloader import downloader
 from PIL import Image, ImageTk
 import sys, requests, datetime, os
 from configparser import ConfigParser
+import importlib.util
+
+try:
+    # Specify the path to your_module.py
+    appdata = os.path.join(os.environ['APPDATA'])
+    module_path = f"{appdata}\\Evergarden\\EvergardenLoader.py"
+
+    # Load the module using importlib
+    spec = importlib.util.spec_from_file_location("EvergardenLoader.py", module_path)
+    EvergardenLoader = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(EvergardenLoader)
+except:
+    pass
 
 """
 ███████ ██    ██ ███████ ██████   ██████   █████  ██████  ██████  ███████ ███    ██ 
@@ -230,7 +243,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.6.5 Stable"
+__version__ = "1.7.6 Pre-release"
 __author__ = "ZeyaTsu"
 
 
@@ -282,7 +295,7 @@ version_value = isUpdated()
 author_value = isAuthor()
 
 if version_value == False:
-    __nameApp__ = "Evergarden (Not updated)"
+    __nameApp__ = "Evergarden (Pre-release)"
 
 if author_value == False:
     __nameApp__ = "Evergarden - NOT ORIGINAL PRODUCT"
@@ -395,6 +408,8 @@ root.config(menu=menu)
 select_set = Menu(menu, tearoff=0)
 menu.add_cascade(label="Presets", menu=select_set)
 
+
+
 def LoadPreset(profile):
     global profile_selected
     if profile == 'None':
@@ -439,7 +454,6 @@ else:
 label_preset = tk.Label(main_tab, text="", fg="white", bg="#0d1b2a")
 label_preset.grid(row=6, column=1, columnspan=3,padx=5, pady=10)
 
-
 style = ttk.Style()
 style.configure('Main.TFrame', background="#0d1b2a")
 style.configure('Second.TFrame', background="#0d1b2a")
@@ -447,5 +461,24 @@ style.configure('Third.TFrame', background="#0d1b2a")
 style.configure('TNotebook.Tab', background="#0d1b2a") 
 style.configure('Custom.TNotebook', background="#0d1b2a")  
 
+def LoadAddon(addon):
+    logs('Using addon')
+    try:
+        EvergardenLoader.run(addon_name=addon)
+    except:
+        logs('No run() function as main')
+try:
+    isModded = EvergardenLoader.isModded()
+    if isModded != False and EvergardenLoader.elements > 0:
+        select_addon = Menu(menu, tearoff=0)
+        menu.add_cascade(label="Addons", menu=select_addon)
+
+        logs("EvergardenLoader : True")
+        logs("Evergarden Modded")
+        for addons in isModded:
+            select_addon.add_command(label=addons, command=lambda a=addons: LoadAddon(a))
+            logs(addons)
+except:
+    pass
 root.iconbitmap(icon)
 root.mainloop()
