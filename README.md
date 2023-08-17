@@ -8,6 +8,7 @@ And no, Evergarden isn't a virus. Those are false-positives due to compiling a .
 If you don't want to run the .exe file, you can still download the .py file located in the 'src' folder.
 
 # Credits
+## Author
 <table>
   <tr>
     <td style="align:center;">
