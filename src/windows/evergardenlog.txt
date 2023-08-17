@@ -1,0 +1,677 @@
+
+[Evergarden1582023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1582023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1582023] Checking isUpdated
+[Evergarden1582023] Checking isAuthor
+[Evergarden1582023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1582023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1582023] Checking isUpdated
+[Evergarden1582023] Checking isAuthor
+[Evergarden1582023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1582023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1582023] Checking isUpdated
+[Evergarden1582023] Checking isAuthor
+[Evergarden1582023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1582023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1582023] Checking isUpdated
+[Evergarden1582023] Checking isAuthor
+[Evergarden1582023] Starting download
+[Evergarden1582023] Download completed
+[Evergarden1582023] Renaming the folder with BetterName variable [Type] Anime - Character (Source) [filter]
+[Evergarden1582023] Folder "C:/Users/User/Desktop/Anime Image DL/Nekopara Cacao profile picture anime" renamed to "C:/Users/User/Desktop/Anime Image DL\[PFP] Nekopara - Cacao"
+[Evergarden1582023] Applying Gif Only Filter
+[Evergarden1582023] Starting download
+[Evergarden1582023] Download completed
+[Evergarden1582023] Renaming the folder with BetterName variable [Type] Anime - Character (Source) [filter]
+[Evergarden1582023] Folder "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao/Nekopara Cacao profile picture anime gif" renamed to "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao\[PFPg] Nekopara - Cacao"
+[Evergarden1582023] Applying Gif Only Filter
+[Evergarden1582023] Starting download
+[Evergarden1582023] Download completed
+[Evergarden1582023] Renaming the folder with BetterName variable [Type] Anime - Character (Source) [filter]
+[Evergarden1582023] Folder "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao/Nekopara Cacao all anime gif" renamed to "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao\[Allg] Nekopara - Cacao"
+[Evergarden1582023] Starting download
+[Evergarden1582023] Download completed
+[Evergarden1582023] Renaming the folder with BetterName variable [Type] Anime - Character (Source) [filter]
+[Evergarden1582023] Folder "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao/Nekopara Cacao all anime" renamed to "C:/Users/User/Desktop/Anime Image DL/[PFP] Nekopara - Cacao\[All] Nekopara - Cacao"
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] EvergardenLoader
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] Applying Gif Only Filter
+[Evergarden1682023] Applying Black & White Filter
+[Evergarden1682023] Applying Pinterest source
+[Evergarden1682023] Applying Tenor source
+[Evergarden1682023] Starting download
+[Evergarden1682023] Converting images to black & white mode
+[Evergarden1682023] Download completed
+[Evergarden1682023] Renaming the folder with BetterName variable [Type] Anime - Character (Source) [filter]
+[Evergarden1682023] Folder "C:/Users/User/Desktop/test/k-on mio profile picture anime gif black white manga pinterest tenor" renamed to "C:/Users/User/Desktop/test\[PFPg] k-on - mio (Pin&Ten) [bw]"
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] EvergardenLoader
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] EvergardenLoader
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] EvergardenLoader
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testaddon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testaddon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] evergarden_testaddon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] EvergardenLoader
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] evergarden_testaddon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] No run() function as main
+[Evergarden1682023] Using addon
+[Evergarden1682023] No run() function as main
+[Evergarden1682023] Using addon
+[Evergarden1682023] No run() function as main
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] evergarden_test
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] test
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] evergarden_test
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testlol
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.6.5 Stable
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testlol
+[Evergarden1682023] Using addon
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.7.6 Pre-release
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Not updated version
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testlol
+[Evergarden1682023] 
+
+ ============== EVERGARDEN ============== 
+
+[Evergarden1682023] Starting Evergarden (Anime Image Downloader) version: 1.7.6 Pre-release
+[Evergarden1682023] Checking isUpdated
+[Evergarden1682023] Not updated version
+[Evergarden1682023] Checking isAuthor
+[Evergarden1682023] EvergardenLoader : True
+[Evergarden1682023] Evergarden Modded
+[Evergarden1682023] testlol
