@@ -3,8 +3,34 @@ from tkinter import ttk, messagebox, filedialog, Menu
 from threading import Thread
 from bing_image_downloader import downloader
 from PIL import Image, ImageTk
-import sys, requests, datetime, os
+import sys, requests, datetime, os, platform, getpass, importlib.util
 from configparser import ConfigParser
+
+try:
+    system_os_platform = platform.system()
+    if system_os_platform == "Windows":
+        appdata = os.path.join(os.environ['APPDATA'])
+        dr = f"{appdata}\\Evergarden"
+        if os.path.exists(dr) == False:
+            folder = "Evergarden"
+            path = os.path.join(appdata, folder)
+            os.mkdir(path)
+    elif system_os_platform == "Linux":
+        username = getpass.getuser()
+        appdata = os.path.join("/home", username)
+        dr = f"{appdata}/Evergarden"
+        if os.path.exists(dr) == False:
+            folder = "Evergarden"
+            path = os.path.join(appdata, folder)
+            os.mkdir(path)
+    else:
+        appdata = os.path.dirname(os.path.realpath(__file__))
+        path = os.path.join(appdata, "Evergarden")
+        os.mkdir(path)
+        
+except:
+    pass
+
 """
 ███████ ██    ██ ███████ ██████   ██████   █████  ██████  ██████  ███████ ███    ██ 
 ██      ██    ██ ██      ██   ██ ██       ██   ██ ██   ██ ██   ██ ██      ████   ██ 
@@ -26,14 +52,32 @@ MAIN CODE
 
 """
 
+CACHE_PATH = ""
+
 def logs(log_to_write:str):
+    global CACHE_PATH
     date = datetime.date.today()
     d,m,y = date.day, date.month, date.year
+    osn = platform.system()
     filename = f'evergardenlog.txt'
-    log = open(filename, 'a')
+    if osn == "Windows":
+        appdata = os.path.join(os.environ['APPDATA'])
+        path = f"{appdata}\\Evergarden\\"
+        r_path = path+filename
+    elif osn == "Linux":
+        username = getpass.getuser()
+        appdata = os.path.join("/home", username)
+        path = f"{appdata}/Evergarden/"
+        r_path = path+filename
+    else:
+        path = f"Evergarden/"
+        r_path = path+filename
+    log = open(r_path, 'a')
     log_to_write = f"\n[Evergarden{d}{m}{y}] {log_to_write}"
     log.write(log_to_write)
     log.close()
+    if CACHE_PATH == "":
+        CACHE_PATH = path
 
 def resource_path(relative_path):
     try:
@@ -71,7 +115,7 @@ def download_images(anime_name, character_name, image_type, num_images_to_downlo
                         adult_filter_off=True, force_replace=False, timeout=60)
 
 def on_download_clicked():
-    global set_loaded, profile
+    global set_loaded, profile, CACHE_PATH
     save_folder = entry_save_folder.get().strip()  # Get the selected save folder
 
     if profile_selected != None:
@@ -89,6 +133,8 @@ def on_download_clicked():
             image_type == "profile picture"
         elif image_type.lower() == "wallpaper":
             image_type = "wallpaper"
+        elif image_type.lower() == "screencaps":
+            image_type = "screencaps"
         else:
             image_type = "all"
         num_images_to_download = int(preset["n_images"])
@@ -111,7 +157,11 @@ def on_download_clicked():
         if options_tenor == "True":
             options_tenor = True
         else:
-            options_tenor = False
+            options_tenor = False        
+        if not save_folder:
+            messagebox.showinfo("Save Folder", f"No Save Folder was specified, you will find your images in the Evergarden folder ({CACHE_PATH})")
+            logs(f'INFO : Save Folder : {CACHE_PATH}')
+            save_folder = CACHE_PATH
         
     else:
         anime_name = entry_anime_name.get().strip()
@@ -123,15 +173,17 @@ def on_download_clicked():
         options_pinterest = pinterest.get() == 1
         options_tenor = tenor.get() == 1
 
-        if not anime_name or not character_name or not image_type:
+        if not anime_name or not image_type:
             messagebox.showerror("Invalid Input", "Please fill in all the required fields")
             logs('Error : Invalid Input')
             return
+        if not character_name:
+            character_name = ""
 
-    if not save_folder:
-        messagebox.showerror("Invalid Save Folder", "Please select a folder to save the images")
-        logs('Error : Invalid Save Folder')
-        return
+        if not save_folder:
+            messagebox.showinfo("Save Folder", f"No Save Folder was specified, you will find your images in the Evergarden folder ({CACHE_PATH})")
+            logs(f'INFO : Save Folder : {CACHE_PATH}')
+            save_folder = CACHE_PATH
 
     # Disable the DL button while downloading
     button_download.config(state=tk.DISABLED)
@@ -200,6 +252,8 @@ def update_progress(download_thread, num_images_to_download, save_folder, option
         image_type = 'PFP'
     elif image_type == 'wallpaper':
         image_type = 'Wallpaper'
+    elif image_type == 'screencaps':
+        image_type = 'Screencaps'
     else:
         image_type = 'All'
     if 'gif' in search_term:
@@ -229,7 +283,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.6.5 Stable"
+__version__ = "1.7.0 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -322,7 +376,7 @@ label_image_type = tk.Label(main_tab, text="Image Type (Click to select):", fg="
 label_image_type.grid(row=2, column=0, padx=5, pady=5)
 
 # Dropdown menu for Image Type
-image_types = ["Profile Picture", "Wallpaper", "All"]
+image_types = ["Profile Picture", "Wallpaper", "Screencaps","All"]
 image_type_var = tk.StringVar(main_tab, value="Profile Picture")  # Default value
 dropdown_image_type = tk.OptionMenu(main_tab, image_type_var, *image_types)
 dropdown_image_type.config(bg="#1b263b", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", relief=tk.FLAT)
@@ -407,7 +461,7 @@ def makePresetFile():
     c.add_section('Preset name')
     c.set('Preset name', 'anime_name','Anime name')
     c.set('Preset name', 'character_name','Character name')
-    c.set('Preset name', 'type','profile picture/wallpaper/all')
+    c.set('Preset name', 'type','profile picture/wallpaper/screencaps/all')
     c.set('Preset name', 'n_images','number of images')
     c.set('Preset name', 'gif','True/False')
     c.set('Preset name', 'filter','None/bw')
