@@ -92,6 +92,10 @@ icon = resource_path("violet.ico")
 search_term = ""
 set_loaded = False
 profile_selected = None
+theme_selected = None
+main_color = None
+second_color = None
+button_color = None
 
 def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor):
     global search_term
@@ -115,16 +119,15 @@ def download_images(anime_name, character_name, image_type, num_images_to_downlo
                         adult_filter_off=True, force_replace=False, timeout=60)
 
 def on_download_clicked():
-    global set_loaded, profile, CACHE_PATH
+    global set_loaded, profile, CACHE_PATH, profile_selected
     save_folder = entry_save_folder.get().strip()  # Get the selected save folder
 
     if profile_selected != None:
         c = ConfigParser()
-        c.read('evergarden_set.ini')
+        c.read(f'{CACHE_PATH}evergarden_presets.ini')
         profiles = c.sections()
         for profile in profiles:
             logs(f'Getting [{profile}] preset')
-        
         preset = c[profile_selected]
         anime_name = preset["anime_name"]
         character_name = preset["character_name"]
@@ -283,7 +286,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.7.0 Stable"
+__version__ = "1.7.4 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -340,6 +343,81 @@ if version_value == False:
 if author_value == False:
     __nameApp__ = "Evergarden - NOT ORIGINAL PRODUCT"
 
+# Select Preset
+
+menu = Menu(root)
+root.config(menu=menu)
+select_set = Menu(menu, tearoff=0)
+select_theme = Menu(menu, tearoff=0)
+menu.add_cascade(label="Presets", menu=select_set)
+menu.add_cascade(label="Themes", menu=select_theme)
+
+""" 
+
+COLORS
+
+"""
+
+def makeThemeFile():
+    global CACHE_PATH
+    ct = ConfigParser()
+    ct.add_section('Themes')
+    ct.set('Themes', 'theme', 'Evergarden')
+    with open(f'{CACHE_PATH}evergarden_themes.ini', 'w') as f:
+        ct.write(f)  
+
+if os.path.exists(f'{CACHE_PATH}evergarden_themes.ini'):
+    ct = ConfigParser()
+    ct.read(f'{CACHE_PATH}evergarden_themes.ini')
+    themes = ["Evergarden", "Ilulu", "Tohru", "Chito", "Tsukasa"]
+    for theme in themes:
+        if len(str(theme)) <= 10:
+            logs(f'Got [{theme}]')
+            select_theme.add_command(label=theme, command=lambda p=theme: LoadTheme(p))
+        else:
+            logs(f"Couldn't get {theme} as length > 10 characters")
+else:
+    makeThemeFile()
+    if os.path.exists(f'{CACHE_PATH}evergarden_themes.ini'):
+        ct = ConfigParser()
+        ct.read(f'{CACHE_PATH}evergarden_themes.ini')
+        themes = ["Evergarden", "Ilulu", "Tohru", "Chito", "Tsukasa"]
+        for theme in themes:
+            if len(str(theme)) <= 10:
+                logs(f'Got [{theme}]')
+                select_theme.add_command(label=theme, command=lambda p=theme: LoadTheme(p))
+            else:
+                logs(f"Couldn't get {theme} as length > 10 characters")
+
+ct = ConfigParser()
+ct.read(f'{CACHE_PATH}evergarden_themes.ini')
+themes = ct.sections()
+for theme in themes:
+    logs(f'Getting [{theme}] theme')
+theme = ct["Themes"]
+theme_name = theme["theme"]
+logs(f'Using {theme_name}')
+
+if theme_name == "Evergarden":
+    main_color = "#0d1b2a"
+    second_color = "#1b263b"
+    button_color = "#778da9"
+if theme_name == "Ilulu":
+    main_color = "#49475C"
+    second_color = "#625E6F"
+    button_color = "#F67E97"
+if theme_name == "Tohru":
+    main_color = "#395274"
+    second_color = "#99aac4"
+    button_color = "#F1AC72"
+if theme_name == "Chito":
+    main_color = "#23342E"
+    second_color = "#404F4A"
+    button_color = "#0E1819"
+if theme_name == "Tsukasa":
+    main_color = "#862C45"
+    second_color = "#EE344C"
+    button_color = "#DB9CAF"
 
 """
 
@@ -348,8 +426,7 @@ MAIN GUI
 """
 
 root.title(__nameApp__)
-root.configure(background="#0d1b2a")
-
+root.configure(background=main_color)
 # window non-resizable
 root.resizable(False, False)
 
@@ -362,54 +439,54 @@ main_tab = ttk.Frame(notebook, style='Main.TFrame')
 notebook.add(main_tab, text='General')
 
 # GUI
-label_anime_name = tk.Label(main_tab, text="Anime Name:", fg="white", bg="#0d1b2a")
+label_anime_name = tk.Label(main_tab, text="Anime Name:", fg="white", bg=main_color)
 label_anime_name.grid(row=0, column=0, padx=5, pady=5)
-entry_anime_name = tk.Entry(main_tab, bg="#1b263b", fg="white")
+entry_anime_name = tk.Entry(main_tab, bg=second_color, fg="white")
 entry_anime_name.grid(row=0, column=1, padx=5, pady=5)
 
-label_character_name = tk.Label(main_tab, text="Character Name:", fg="white", bg="#0d1b2a")
+label_character_name = tk.Label(main_tab, text="Character Name:", fg="white", bg=main_color)
 label_character_name.grid(row=1, column=0, padx=5, pady=5)
-entry_character_name = tk.Entry(main_tab, bg="#1b263b", fg="white")
+entry_character_name = tk.Entry(main_tab, bg=second_color, fg="white")
 entry_character_name.grid(row=1, column=1, padx=5, pady=5)
 
-label_image_type = tk.Label(main_tab, text="Image Type (Click to select):", fg="white", bg="#0d1b2a")
+label_image_type = tk.Label(main_tab, text="Image Type (Click to select):", fg="white", bg=main_color)
 label_image_type.grid(row=2, column=0, padx=5, pady=5)
 
 # Dropdown menu for Image Type
 image_types = ["Profile Picture", "Wallpaper", "Screencaps","All"]
 image_type_var = tk.StringVar(main_tab, value="Profile Picture")  # Default value
 dropdown_image_type = tk.OptionMenu(main_tab, image_type_var, *image_types)
-dropdown_image_type.config(bg="#1b263b", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", relief=tk.FLAT)
+dropdown_image_type.config(bg=second_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", relief=tk.FLAT)
 dropdown_image_type.grid(row=2, column=1, padx=5, pady=5)
 
-label_num_images = tk.Label(main_tab, text="Number of Images to Download:", fg="white", bg="#0d1b2a")
+label_num_images = tk.Label(main_tab, text="Number of Images to Download:", fg="white", bg=main_color)
 label_num_images.grid(row=3, column=0, padx=5, pady=5)
-entry_num_images = tk.Entry(main_tab, bg="#1b263b", fg="white")
+entry_num_images = tk.Entry(main_tab, bg=second_color, fg="white")
 entry_num_images.grid(row=3, column=1, padx=5, pady=5)
 
-label_save_folder = tk.Label(main_tab, text="Save Folder:", fg="white", bg="#0d1b2a")
+label_save_folder = tk.Label(main_tab, text="Save Folder:", fg="white", bg=main_color)
 label_save_folder.grid(row=4, column=0, padx=5, pady=5)
-entry_save_folder = tk.Entry(main_tab, bg="#1b263b", fg="white")
+entry_save_folder = tk.Entry(main_tab, bg=second_color, fg="white")
 entry_save_folder.grid(row=4, column=1, padx=5, pady=5)
-button_select_folder = tk.Button(main_tab, text="Select Folder", command=on_select_folder_clicked, bg="#778da9", fg="white", bd=0, relief=tk.FLAT)
+button_select_folder = tk.Button(main_tab, text="Select Folder", command=on_select_folder_clicked, bg=button_color, fg="white", bd=0, relief=tk.FLAT)
 button_select_folder.grid(row=4, column=2, padx=5, pady=5)
 
 # Checkbox Gif Only (variable)
 gif_only_var = tk.IntVar()
 
 # Checkbox Gif Only (creating)
-checkbox_gif_only = tk.Checkbutton(main_tab, text="Gif only", variable=gif_only_var, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_gif_only = tk.Checkbutton(main_tab, text="Gif only", variable=gif_only_var, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_gif_only.grid(row=3, column=2, padx=5, pady=5)
 
-button_download = tk.Button(main_tab, text="Download Images", command=on_download_clicked, bg="#778da9", fg="white", bd=0, relief=tk.FLAT)
+button_download = tk.Button(main_tab, text="Download Images", command=on_download_clicked, bg=button_color, fg="white", bd=0, relief=tk.FLAT)
 button_download.grid(row=6, column=0, columnspan=3, padx=5, pady=10)
 
-percentage_label = tk.Label(main_tab, text="", fg="white", bg="#0d1b2a")
+percentage_label = tk.Label(main_tab, text="", fg="white", bg=main_color)
 percentage_label.grid(row=5, column=0, columnspan=3, padx=5, pady=10)
 
 try:
     c = ConfigParser()
-    c.read('evergarden_set.ini')
+    c.read(f'{CACHE_PATH}evergarden_presets.ini')
     c = c["evergarden"]
     set_loaded = True
     logs(f'Set loaded : {set_loaded}')
@@ -421,15 +498,15 @@ options_tab = ttk.Frame(notebook, style='Second.TFrame')
 notebook.add(options_tab, text="Options")
 
 filter_black_white = tk.IntVar()
-checkbox_blackwhite = tk.Checkbutton(options_tab, text="Black & White", variable=filter_black_white, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_blackwhite = tk.Checkbutton(options_tab, text="Black & White", variable=filter_black_white, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_blackwhite.grid(row=1, column=1, padx=5, pady=5)
 
 pinterest = tk.IntVar()
-checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_pinterest.grid(row=1, column=2, padx=5, pady=5)
 
 tenor = tk.IntVar()
-checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor="#1b263b", bg="#0d1b2a", fg="white", activebackground="#0d1b2a", activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_tenor.grid(row=1, column=3, padx=5, pady=5)
 
 
@@ -438,15 +515,16 @@ second_tab = ttk.Frame(notebook, style='Third.TFrame')
 notebook.add(second_tab, text='About')
 
 # Text about tab
-text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg="#0d1b2a")
+text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg=main_color)
 text_in_second_tab.grid(row=1, column=2, padx=150, pady=100)
 
-# Select Preset
 
-menu = Menu(root)
-root.config(menu=menu)
-select_set = Menu(menu, tearoff=0)
-menu.add_cascade(label="Presets", menu=select_set)
+def restart():
+    import subprocess
+    python_executable = sys.executable
+    script_file = sys.argv[0]
+    root.destroy()
+    subprocess.Popen([python_executable, script_file])
 
 def LoadPreset(profile):
     global profile_selected
@@ -457,7 +535,22 @@ def LoadPreset(profile):
         profile_selected = profile
         label_preset.config(text=f"{profile}")
 
+def LoadTheme(theme):
+    global theme_selected
+    if theme == 'None':
+        theme_selected = "Evergarden"
+    else:
+        theme_selected = theme
+    ct.read(f"{CACHE_PATH}evergarden_themes.ini")
+    ct.set("Themes", "theme", str(theme_selected))
+    with open(f"{CACHE_PATH}evergarden_themes.ini", 'w') as f:
+        ct.write(f)
+    logs(f'Setting {theme_selected}')
+    messagebox.showinfo('Evergarden (Anime Image Downloader)', f"Evergarden will now restart to use `{theme_selected}` theme.")
+    restart()
+
 def makePresetFile():
+    global CACHE_PATH
     c.add_section('Preset name')
     c.set('Preset name', 'anime_name','Anime name')
     c.set('Preset name', 'character_name','Character name')
@@ -468,17 +561,17 @@ def makePresetFile():
     c.set('Preset name', 'pinterest','True/False')
     c.set('Preset name', 'tenor', 'True/False')
     c.set('Preset name', 'INFO', 'PRESET NAME MUST BE UNDER 10 CHARACTERS. (you can delete this line)')
-    with open('evergarden_set.ini', 'w') as f:
+    with open(f'{CACHE_PATH}evergarden_presets.ini', 'w') as f:
         c.write(f)
-    logs('Made evergarden_set.ini')
+    logs('Made evergarden_presets.ini')
     messagebox.showinfo("Evergarden Help", "Note that if you want to add another preset, just copy & paste the existing preset and edit it. By clicking 'OK' Evergarden will close to load presets.")
     root.destroy()
 
 
-if os.path.exists('evergarden_set.ini'):
+if os.path.exists(f'{CACHE_PATH}evergarden_presets.ini'):
     select_set.add_command(label="None", command=lambda p='None': LoadPreset(p))
     c = ConfigParser()
-    c.read('evergarden_set.ini')
+    c.read(f'{CACHE_PATH}evergarden_presets.ini')
     profiles = c.sections()
     for profile in profiles:
         if len(str(profile)) <= 10:
@@ -489,15 +582,16 @@ if os.path.exists('evergarden_set.ini'):
 else:
     select_set.add_command(label="Make preset file", command=makePresetFile)
 
-label_preset = tk.Label(main_tab, text="", fg="white", bg="#0d1b2a")
+
+label_preset = tk.Label(main_tab, text="", fg="white", bg=main_color)
 label_preset.grid(row=6, column=1, columnspan=3,padx=5, pady=10)
 
 style = ttk.Style()
-style.configure('Main.TFrame', background="#0d1b2a")
-style.configure('Second.TFrame', background="#0d1b2a")
-style.configure('Third.TFrame', background="#0d1b2a")
-style.configure('TNotebook.Tab', background="#0d1b2a") 
-style.configure('Custom.TNotebook', background="#0d1b2a")  
+style.configure('Main.TFrame', background=main_color)
+style.configure('Second.TFrame', background=main_color)
+style.configure('Third.TFrame', background=main_color)
+style.configure('TNotebook.Tab', background=main_color) 
+style.configure('Custom.TNotebook', background=main_color)  
 
 root.iconbitmap(icon)
 root.mainloop()
