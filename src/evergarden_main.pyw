@@ -93,13 +93,17 @@ search_term = ""
 set_loaded = False
 profile_selected = None
 theme_selected = None
+custom_theme_selected = None
 main_color = None
 second_color = None
 button_color = None
 
-def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor):
+def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, anime_explicit, gif_only, options_black_white, options_pinterest, options_tenor):
     global search_term
-    search_term = f"{anime_name} {character_name} {image_type} anime"
+    search_term = f"{anime_name} {character_name} {image_type}"
+    if anime_explicit:
+        search_term += " anime"
+        logs("Applying Anime Explicit")
     if gif_only:
         search_term += " gif"
         logs('Applying Gif Only Filter')
@@ -171,6 +175,7 @@ def on_download_clicked():
         character_name = entry_character_name.get().strip()
         image_type = image_type_var.get().lower()  # Get the selected image type from the dropdown menu
         num_images_to_download = int(entry_num_images.get().strip())
+        anime_explicit = anime_explicit_var.get() == 1  # Check if the "Gif only" checkbox is checked
         gif_only = gif_only_var.get() == 1  # Check if the "Gif only" checkbox is checked
         options_black_white = filter_black_white.get() == 1
         options_pinterest = pinterest.get() == 1
@@ -191,10 +196,10 @@ def on_download_clicked():
     # Disable the DL button while downloading
     button_download.config(state=tk.DISABLED)
 
-    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, gif_only, options_black_white, options_pinterest, options_tenor))
+    download_thread = Thread(target=download_images, args=(anime_name, character_name, image_type, num_images_to_download, save_folder, anime_explicit, gif_only, options_black_white, options_pinterest, options_tenor))
     download_thread.start()
 
-    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest,options_tenor))
+    progress_thread = Thread(target=update_progress, args=(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, anime_explicit, options_pinterest, options_tenor))
     progress_thread.start()
 
 def apply_black_and_white_filter(dir_folder):
@@ -241,7 +246,7 @@ def rename_folder(dir_folder, new_name):
             print(e)
             logs("Can't rename folder, already existing")
 
-def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, options_pinterest, options_tenor):
+def update_progress(download_thread, num_images_to_download, save_folder, options_black_white, image_type, anime_name, character_name, anime_explicit, options_pinterest, options_tenor):
     while download_thread.is_alive():
         percentage_label.config(text=f"Downloading...")
     percentage_label.config(text="Download Completed")
@@ -286,7 +291,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.7.4 Stable"
+__version__ = "1.7.8 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -373,7 +378,7 @@ if os.path.exists(f'{CACHE_PATH}evergarden_themes.ini'):
     for theme in themes:
         if len(str(theme)) <= 10:
             logs(f'Got [{theme}]')
-            select_theme.add_command(label=theme, command=lambda p=theme: LoadTheme(p))
+            select_theme.add_command(label=theme, command=lambda p=theme: LoadDefaultTheme(p))
         else:
             logs(f"Couldn't get {theme} as length > 10 characters")
 else:
@@ -385,7 +390,7 @@ else:
         for theme in themes:
             if len(str(theme)) <= 10:
                 logs(f'Got [{theme}]')
-                select_theme.add_command(label=theme, command=lambda p=theme: LoadTheme(p))
+                select_theme.add_command(label=theme, command=lambda p=theme: LoadDefaultTheme(p))
             else:
                 logs(f"Couldn't get {theme} as length > 10 characters")
 
@@ -418,6 +423,19 @@ if theme_name == "Tsukasa":
     main_color = "#862C45"
     second_color = "#EE344C"
     button_color = "#DB9CAF"
+elif theme_name not in ["Evergarden", "Ilulu", "Tohru", "Chito", "Tsukasa"]:
+    try:
+        ctc = ConfigParser()
+        ctc.read(f'{CACHE_PATH}custom_evergarden_themes.ini')
+        theme_custom_use = ctc[theme_name]
+        main_color = str(theme_custom_use["main_color"])
+        second_color = str(theme_custom_use["second_color"])
+        button_color = str(theme_custom_use["button_color"])
+    except:
+        main_color = "#0d1b2a"
+        second_color = "#1b263b"
+        button_color = "#778da9"
+
 
 """
 
@@ -473,6 +491,7 @@ button_select_folder.grid(row=4, column=2, padx=5, pady=5)
 
 # Checkbox Gif Only (variable)
 gif_only_var = tk.IntVar()
+anime_explicit_var = tk.IntVar()
 
 # Checkbox Gif Only (creating)
 checkbox_gif_only = tk.Checkbutton(main_tab, text="Gif only", variable=gif_only_var, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
@@ -497,17 +516,21 @@ except:
 options_tab = ttk.Frame(notebook, style='Second.TFrame')
 notebook.add(options_tab, text="Options")
 
+anime_explicit_var = tk.IntVar()
+checkbox_blackwhite = tk.Checkbutton(options_tab, text="Anime explicit", variable=anime_explicit_var, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_blackwhite.grid(row=1, column=1, padx=5, pady=5)
+
 filter_black_white = tk.IntVar()
 checkbox_blackwhite = tk.Checkbutton(options_tab, text="Black & White", variable=filter_black_white, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
-checkbox_blackwhite.grid(row=1, column=1, padx=5, pady=5)
+checkbox_blackwhite.grid(row=1, column=2, padx=5, pady=5)
 
 pinterest = tk.IntVar()
 checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
-checkbox_pinterest.grid(row=1, column=2, padx=5, pady=5)
+checkbox_pinterest.grid(row=1, column=3, padx=5, pady=5)
 
 tenor = tk.IntVar()
 checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
-checkbox_tenor.grid(row=1, column=3, padx=5, pady=5)
+checkbox_tenor.grid(row=2, column=1, padx=5, pady=5)
 
 
 # About Tab
@@ -535,7 +558,24 @@ def LoadPreset(profile):
         profile_selected = profile
         label_preset.config(text=f"{profile}")
 
-def LoadTheme(theme):
+def LoadCustomTheme(theme_chosen):
+    global custom_theme_selected, theme_selected
+    logs(f'Chose {theme_chosen} theme')
+    custom_theme_selected = theme_chosen
+    if theme == 'None':
+        theme_selected = "Evergarden"
+    else:
+        theme_selected = theme_chosen
+    ct.read(f"{CACHE_PATH}evergarden_themes.ini")
+    ct.set("Themes", "theme", str(theme_selected))
+    with open(f"{CACHE_PATH}evergarden_themes.ini", 'w') as f:
+        ct.write(f)
+    logs(f'Setting {theme_selected}')
+    messagebox.showinfo('Evergarden (Anime Image Downloader)', f"Evergarden will now restart to use `{theme_selected}` theme.")
+    restart()
+    
+
+def LoadDefaultTheme(theme):
     global theme_selected
     if theme == 'None':
         theme_selected = "Evergarden"
@@ -564,9 +604,21 @@ def makePresetFile():
     with open(f'{CACHE_PATH}evergarden_presets.ini', 'w') as f:
         c.write(f)
     logs('Made evergarden_presets.ini')
-    messagebox.showinfo("Evergarden Help", "Note that if you want to add another preset, just copy & paste the existing preset and edit it. By clicking 'OK' Evergarden will close to load presets.")
-    root.destroy()
+    messagebox.showinfo("Evergarden Help", f"Note that if you want to add another preset, just copy & paste the existing preset and edit it. By clicking 'OK' Evergarden will close to load presets. ({CACHE_PATH})")
+    restart()
 
+def makeCustomThemeFile():
+    global CACHE_PATH
+    c.add_section('Theme name')
+    c.set('Theme name', 'main_color','#FFFFFF')
+    c.set('Theme name', 'second_color','#FFFFFF')
+    c.set('Theme name', 'button_color','#FFFFFF')
+    c.set('Theme name', 'INFO', 'PRESET NAME MUST BE UNDER 10 CHARACTERS. (you can delete this line)')
+    with open(f'{CACHE_PATH}custom_evergarden_themes.ini', 'w') as f:
+        c.write(f)
+    logs('Made custom_evergarden_themes.ini')
+    messagebox.showinfo("Evergarden Help", f"Note that if you want to add another preset, just copy & paste the existing preset and edit it. By clicking 'OK' Evergarden will close to load themes. ({CACHE_PATH})")
+    restart()
 
 if os.path.exists(f'{CACHE_PATH}evergarden_presets.ini'):
     select_set.add_command(label="None", command=lambda p='None': LoadPreset(p))
@@ -582,6 +634,19 @@ if os.path.exists(f'{CACHE_PATH}evergarden_presets.ini'):
 else:
     select_set.add_command(label="Make preset file", command=makePresetFile)
 
+
+if os.path.exists(f'{CACHE_PATH}custom_evergarden_themes.ini'):
+    ctc = ConfigParser()
+    ctc.read(f'{CACHE_PATH}custom_evergarden_themes.ini')
+    themes_c = ctc.sections()
+    for theme_c in themes_c:
+        if len(str(theme_c)) <= 10:
+            logs(f'Got [{theme_c}] Theme')
+            select_theme.add_command(label=theme_c, command=lambda p=theme_c: LoadCustomTheme(p))
+        else:
+            logs(f"Couldn't get {theme_c} Theme as lenght > 10 characters") 
+else:
+    select_theme.add_command(label="Make custom theme file", command=makeCustomThemeFile)
 
 label_preset = tk.Label(main_tab, text="", fg="white", bg=main_color)
 label_preset.grid(row=6, column=1, columnspan=3,padx=5, pady=10)
