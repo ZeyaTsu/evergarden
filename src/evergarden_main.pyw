@@ -97,6 +97,7 @@ custom_theme_selected = None
 main_color = None
 second_color = None
 button_color = None
+text_color = None
 
 def download_images(anime_name, character_name, image_type, num_images_to_download, save_folder, anime_explicit, gif_only, options_black_white, options_pinterest, options_tenor):
     global search_term
@@ -291,7 +292,7 @@ def on_select_folder_clicked():
 root = tk.Tk()
 
 __nameApp__ = "Evergarden (Anime Image Downloader)"
-__version__ = "1.7.8 Stable"
+__version__ = "1.7.9 Stable"
 __author__ = "ZeyaTsu"
 
 
@@ -407,22 +408,27 @@ if theme_name == "Evergarden":
     main_color = "#0d1b2a"
     second_color = "#1b263b"
     button_color = "#778da9"
+    text_color = "white"
 if theme_name == "Ilulu":
     main_color = "#49475C"
     second_color = "#625E6F"
     button_color = "#F67E97"
+    text_color = "white"
 if theme_name == "Tohru":
     main_color = "#395274"
     second_color = "#99aac4"
     button_color = "#F1AC72"
+    text_color = "white"
 if theme_name == "Chito":
     main_color = "#23342E"
     second_color = "#404F4A"
     button_color = "#0E1819"
+    text_color = "white"
 if theme_name == "Tsukasa":
     main_color = "#862C45"
     second_color = "#EE344C"
     button_color = "#DB9CAF"
+    text_color = "white"
 elif theme_name not in ["Evergarden", "Ilulu", "Tohru", "Chito", "Tsukasa"]:
     try:
         ctc = ConfigParser()
@@ -431,10 +437,12 @@ elif theme_name not in ["Evergarden", "Ilulu", "Tohru", "Chito", "Tsukasa"]:
         main_color = str(theme_custom_use["main_color"])
         second_color = str(theme_custom_use["second_color"])
         button_color = str(theme_custom_use["button_color"])
+        text_color = str(theme_custom_use["text_color"])
     except:
         main_color = "#0d1b2a"
         second_color = "#1b263b"
         button_color = "#778da9"
+        text_color = "white"
 
 
 """
@@ -457,36 +465,36 @@ main_tab = ttk.Frame(notebook, style='Main.TFrame')
 notebook.add(main_tab, text='General')
 
 # GUI
-label_anime_name = tk.Label(main_tab, text="Anime Name:", fg="white", bg=main_color)
+label_anime_name = tk.Label(main_tab, text="Anime Name:", fg=text_color, bg=main_color)
 label_anime_name.grid(row=0, column=0, padx=5, pady=5)
-entry_anime_name = tk.Entry(main_tab, bg=second_color, fg="white")
+entry_anime_name = tk.Entry(main_tab, bg=second_color, fg=text_color)
 entry_anime_name.grid(row=0, column=1, padx=5, pady=5)
 
-label_character_name = tk.Label(main_tab, text="Character Name:", fg="white", bg=main_color)
+label_character_name = tk.Label(main_tab, text="Character Name:", fg=text_color, bg=main_color)
 label_character_name.grid(row=1, column=0, padx=5, pady=5)
-entry_character_name = tk.Entry(main_tab, bg=second_color, fg="white")
+entry_character_name = tk.Entry(main_tab, bg=second_color, fg=text_color)
 entry_character_name.grid(row=1, column=1, padx=5, pady=5)
 
-label_image_type = tk.Label(main_tab, text="Image Type (Click to select):", fg="white", bg=main_color)
+label_image_type = tk.Label(main_tab, text="Image Type (Click to select):", fg=text_color, bg=main_color)
 label_image_type.grid(row=2, column=0, padx=5, pady=5)
 
 # Dropdown menu for Image Type
 image_types = ["Profile Picture", "Wallpaper", "Screencaps","All"]
 image_type_var = tk.StringVar(main_tab, value="Profile Picture")  # Default value
 dropdown_image_type = tk.OptionMenu(main_tab, image_type_var, *image_types)
-dropdown_image_type.config(bg=second_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", relief=tk.FLAT)
+dropdown_image_type.config(bg=second_color, fg=text_color, activebackground=main_color, activeforeground=text_color, relief=tk.FLAT)
 dropdown_image_type.grid(row=2, column=1, padx=5, pady=5)
 
-label_num_images = tk.Label(main_tab, text="Number of Images to Download:", fg="white", bg=main_color)
+label_num_images = tk.Label(main_tab, text="Number of Images to Download:", fg=text_color, bg=main_color)
 label_num_images.grid(row=3, column=0, padx=5, pady=5)
-entry_num_images = tk.Entry(main_tab, bg=second_color, fg="white")
+entry_num_images = tk.Entry(main_tab, bg=second_color, fg=text_color)
 entry_num_images.grid(row=3, column=1, padx=5, pady=5)
 
-label_save_folder = tk.Label(main_tab, text="Save Folder:", fg="white", bg=main_color)
+label_save_folder = tk.Label(main_tab, text="Save Folder:", fg=text_color, bg=main_color)
 label_save_folder.grid(row=4, column=0, padx=5, pady=5)
-entry_save_folder = tk.Entry(main_tab, bg=second_color, fg="white")
+entry_save_folder = tk.Entry(main_tab, bg=second_color, fg=text_color)
 entry_save_folder.grid(row=4, column=1, padx=5, pady=5)
-button_select_folder = tk.Button(main_tab, text="Select Folder", command=on_select_folder_clicked, bg=button_color, fg="white", bd=0, relief=tk.FLAT)
+button_select_folder = tk.Button(main_tab, text="Select Folder", command=on_select_folder_clicked, bg=button_color, fg=text_color, bd=0, relief=tk.FLAT)
 button_select_folder.grid(row=4, column=2, padx=5, pady=5)
 
 # Checkbox Gif Only (variable)
@@ -494,13 +502,13 @@ gif_only_var = tk.IntVar()
 anime_explicit_var = tk.IntVar()
 
 # Checkbox Gif Only (creating)
-checkbox_gif_only = tk.Checkbutton(main_tab, text="Gif only", variable=gif_only_var, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_gif_only = tk.Checkbutton(main_tab, text="Gif only", variable=gif_only_var, selectcolor=second_color, bg=main_color, fg=text_color, activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_gif_only.grid(row=3, column=2, padx=5, pady=5)
 
-button_download = tk.Button(main_tab, text="Download Images", command=on_download_clicked, bg=button_color, fg="white", bd=0, relief=tk.FLAT)
+button_download = tk.Button(main_tab, text="Download Images", command=on_download_clicked, bg=button_color, fg=text_color, bd=0, relief=tk.FLAT)
 button_download.grid(row=6, column=0, columnspan=3, padx=5, pady=10)
 
-percentage_label = tk.Label(main_tab, text="", fg="white", bg=main_color)
+percentage_label = tk.Label(main_tab, text="", fg=text_color, bg=main_color)
 percentage_label.grid(row=5, column=0, columnspan=3, padx=5, pady=10)
 
 try:
@@ -517,19 +525,19 @@ options_tab = ttk.Frame(notebook, style='Second.TFrame')
 notebook.add(options_tab, text="Options")
 
 anime_explicit_var = tk.IntVar()
-checkbox_blackwhite = tk.Checkbutton(options_tab, text="Anime explicit", variable=anime_explicit_var, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_blackwhite = tk.Checkbutton(options_tab, text="Anime explicit", variable=anime_explicit_var, selectcolor=second_color, bg=main_color, fg=text_color, activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_blackwhite.grid(row=1, column=1, padx=5, pady=5)
 
 filter_black_white = tk.IntVar()
-checkbox_blackwhite = tk.Checkbutton(options_tab, text="Black & White", variable=filter_black_white, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_blackwhite = tk.Checkbutton(options_tab, text="Black & White", variable=filter_black_white, selectcolor=second_color, bg=main_color, fg=text_color, activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_blackwhite.grid(row=1, column=2, padx=5, pady=5)
 
 pinterest = tk.IntVar()
-checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_pinterest = tk.Checkbutton(options_tab, text="From Pinterest", variable=pinterest, selectcolor=second_color, bg=main_color, fg=text_color, activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_pinterest.grid(row=1, column=3, padx=5, pady=5)
 
 tenor = tk.IntVar()
-checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor=second_color, bg=main_color, fg="white", activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
+checkbox_tenor = tk.Checkbutton(options_tab, text="From Tenor", variable=tenor, selectcolor=second_color, bg=main_color, fg=text_color, activebackground=main_color, activeforeground="#FFFFFF", disabledforeground="#FFFFFF")
 checkbox_tenor.grid(row=2, column=1, padx=5, pady=5)
 
 
@@ -538,7 +546,7 @@ second_tab = ttk.Frame(notebook, style='Third.TFrame')
 notebook.add(second_tab, text='About')
 
 # Text about tab
-text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg="white", bg=main_color)
+text_in_second_tab = tk.Label(second_tab, text=f"Author: {__author__}\n\nVersion: {__version__}", fg=text_color, bg=main_color)
 text_in_second_tab.grid(row=1, column=2, padx=150, pady=100)
 
 
@@ -613,6 +621,7 @@ def makeCustomThemeFile():
     c.set('Theme name', 'main_color','#FFFFFF')
     c.set('Theme name', 'second_color','#FFFFFF')
     c.set('Theme name', 'button_color','#FFFFFF')
+    c.set('Theme name', 'text_color','#FFFFFF')
     c.set('Theme name', 'INFO', 'PRESET NAME MUST BE UNDER 10 CHARACTERS. (you can delete this line)')
     with open(f'{CACHE_PATH}custom_evergarden_themes.ini', 'w') as f:
         c.write(f)
@@ -648,7 +657,7 @@ if os.path.exists(f'{CACHE_PATH}custom_evergarden_themes.ini'):
 else:
     select_theme.add_command(label="Make custom theme file", command=makeCustomThemeFile)
 
-label_preset = tk.Label(main_tab, text="", fg="white", bg=main_color)
+label_preset = tk.Label(main_tab, text="", fg=text_color, bg=main_color)
 label_preset.grid(row=6, column=1, columnspan=3,padx=5, pady=10)
 
 style = ttk.Style()
